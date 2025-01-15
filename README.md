@@ -15,7 +15,7 @@ For at køre dette projekt skal følgende være installeret:
 - **npm** (Node Package Manager, som følger med Node.js)
 - En internetforbindelse til at hente nødvendige ressourcer
 
-**Bemærk:** Applikationen kører som standard over en IP-adresse. Hvis du ønsker at køre den via et domænenavn, kan du læse og selv finde ud af det [her]([https://shorturl.at/cCrpA](https://dextrop.medium.com/deploy-your-node-js-application-on-a-domain-c68900b7535f)).
+**Bemærk:** Applikationen kører som standard over en IP-adresse. Hvis du ønsker at køre den via et domænenavn, kan du læse og selv finde ud af det ([her](https://dextrop.medium.com/deploy-your-node-js-application-on-a-domain-c68900b7535f)).
 
 ### Installation
 
