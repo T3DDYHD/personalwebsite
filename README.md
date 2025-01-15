@@ -23,7 +23,7 @@ Følg disse trin for at installere og starte projektet:
 
 1. **Klon repositoryet eller download filerne:**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/T3DDYHD/personalwebsite.git
    ```
 
 2. **Installer de nødvendige pakker:**
@@ -46,6 +46,6 @@ Følg disse trin for at installere og starte projektet:
 3. Åbn din browser og naviger til den angivne IP-adresse eller domæne for at se applikationen i aktion.
 
 ### Yderligere information
-Hvis du oplever problemer eller har spørgsmål, er du velkommen til at oprette en [issue](https://github.com/<repo-url>/issues) i repositoryet.
+Hvis du oplever problemer eller har spørgsmål, er du velkommen til at oprette en [issue](https://github.com/T3DDYHD/personalwebsite/issues) i repositoryet.
 
 **God fornøjelse!**
