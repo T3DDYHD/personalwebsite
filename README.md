@@ -35,7 +35,31 @@ Følg disse trin for at installere og starte projektet:
    npm install dotenv
    npm install cors
    ```
-
+### Customize den til dine behov
+```
+{
+    "backgroundVideo": "https://r2.fivemanage.com/DoYALrlzky4ByIcbQU4B3/video/LetGo.mp4", **du kan selv vælge at uploade en video på [Five Manage](https://fivemanage.com/)**
+    "logo": "https://cdn.discordapp.com/avatars/513639579715371009/0936665370f736a7ba3c3618f19abee5.png?size=1024", dit profil billede
+    "username": "Ditnavn her", **Sæt dit navn ind her**
+    "socialLinks": [
+        {
+            "icon": "fab fa-spotify",
+            "url": "https://spotify.com",
+            "color": "#1db954"
+        },
+        {
+            "icon": "fab fa-twitter",
+            "url": "https://twitter.com",
+            "color": "#00acee"
+        },
+        {
+            "icon": "fab fa-youtube",
+            "url": "https://youtube.com",
+            "color": "#ff0000"
+        }
+    ]
+}
+```
 ### Kørsel af projektet
 
 1. Opret en `.env`-fil i projektets rodmappe og tilføj de nødvendige miljøvariabler (eksempelvis API-nøgler eller konfigurationsindstillinger).
