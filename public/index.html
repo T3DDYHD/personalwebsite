@@ -15,13 +15,11 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: Arial, sans-serif;
             overflow: hidden;
             background-color: #000;
         }
-
         .background-video {
             position: fixed;
             top: 0;
@@ -31,7 +29,6 @@
             object-fit: cover;
             z-index: -1;
         }
-
         .profile-container {
             position: absolute;
             top: 50%;
@@ -52,12 +49,10 @@
             will-change: transform;
             perspective: 1000px;
         }
-
         .profile-container:hover {
             transform: translate(-50%, -50%) rotateY(10deg) rotateX(10deg);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
         }
-
         .profile-header {
             width: 100%;
             height: 100px;
@@ -67,7 +62,6 @@
             border-top-right-radius: 20px;
             position: relative;
         }
-
         .profile-pic {
             position: absolute;
             top: 60px;
@@ -79,13 +73,11 @@
             border: 3px solid #fff;
             overflow: hidden;
         }
-
         .profile-pic img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .username {
             font-size: 22px;
             font-weight: bold;
@@ -93,24 +85,20 @@
             margin-top: 50px;
             text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
         }
-
         .social-icons {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-top: 10px;
         }
-
         .social-icons a {
             color: #fff;
             font-size: 24px;
             transition: color 0.3s;
         }
-
         .social-icons a:hover {
             color: #1db954;
         }
-
         .viewer-count {
             position: absolute;
             top: 20px;
@@ -123,7 +111,6 @@
             font-weight: bold;
             text-align: center;
         }
-
         .reminder-box {
             position: fixed;
             top: 10px;
@@ -139,60 +126,48 @@
             border-radius: 5px;
             z-index: 1000;
         }
-
         /* Mobile-Friendly Media Queries */
         @media (max-width: 768px) {
             .profile-container {
                 width: 90%;
                 height: 250px;
             }
-
             .profile-pic {
                 width: 60px;
                 height: 60px;
             }
-
             .username {
                 font-size: 18px;
             }
-
             .viewer-count {
                 font-size: 16px;
             }
-
             .social-icons a {
                 font-size: 20px;
             }
         }
-
         @media (max-width: 480px) {
             .profile-container {
                 width: 95%;
             }
-
             .profile-pic {
                 width: 50px;
                 height: 50px;
             }
-
             .username {
                 font-size: 16px;
             }
-
             .viewer-count {
                 font-size: 14px;
             }
-
             .social-icons a {
                 font-size: 18px;
             }
-
             .reminder-box {
                 font-size: 14px;
                 padding: 5px 10px;
             }
         }
-
         .discord-status-box {
             position: absolute;
             top: 90%;
@@ -213,27 +188,22 @@
             will-change: transform;
             perspective: 1000px;
         }
-
         .discord-status-box h2 {
             margin: 0 0 10px;
             font-size: 22px;
         }
-
         .discord-status-box span {
             display: block;
             font-size: 18px;
             margin-top: 5px;
         }
-
     </style>
 </head>
 <body>
-    <!-- Reminder Box -->
     <div class="reminder-box" id="reminder-box">
         Click anywhere to start the background video and music.
     </div>
 
-    <!-- Background Video with Audio -->
     <video class="background-video" id="background-video" autoplay loop muted>
         <source id="video-source" type="video/mp4">
         Your browser does not support the video tag.
@@ -260,20 +230,11 @@
         async function loadConfig() {
             const response = await fetch('config.json');
             const config = await response.json();
-
-            // Set background video
             document.getElementById('background-video').src = config.backgroundVideo;
-
-            // Set profile header
             document.getElementById('profile-header').style.backgroundImage = `url('${config.headerImage}')`;
-
-            // Set profile picture
             document.getElementById('profile-pic').src = config.logo;
-
-            // Set username
             document.getElementById('username').textContent = config.username;
 
-            // Generate social media icons
             const socialIconsContainer = document.getElementById('social-icons');
             config.socialLinks.forEach(link => {
                 const iconElement = document.createElement('a');
@@ -283,7 +244,6 @@
                 socialIconsContainer.appendChild(iconElement);
             });
 
-            // Set background video
             document.getElementById('video-source').src = config.backgroundVideo;
 
             updateViewerCount()
@@ -295,31 +255,13 @@
             return data.ip;
         }
 
-        function animateViewerCount(oldCount, newCount) {
-            const viewerCountElement = document.getElementById('viewer-count');
-            let currentCount = oldCount;
-            const step = (newCount - oldCount) / 50;
-            const interval = setInterval(() => {
-                currentCount += step;
-                if (Math.abs(currentCount - newCount) < 0.1) {
-                    currentCount = newCount;
-                    clearInterval(interval);
-                }
-                viewerCountElement.innerText = `👁️ ${Math.round(currentCount)}`;
-            }, 30);
-        }
-
         async function updateViewerCount() {
             const ip = await getIP();
 
             const viewerCountResponse = await fetch('/get-viewer-count');
             const viewerCountData = await viewerCountResponse.json();
             const newViewerCount = viewerCountData.count;
-
             const currentViewerCount = parseInt(document.getElementById('viewer-count').innerText.replace('👁️ ', '') || '0');
-
-            animateViewerCount(currentViewerCount, newViewerCount);
-
             await fetch('/update-viewer-count', {
                 method: 'POST',
                 headers: {
@@ -329,44 +271,22 @@
             });
         }
 
-        // Play background video with sound on first click
         let isAudioPlayed = false;
         document.body.addEventListener('click', function() {
             if (!isAudioPlayed) {
                 const video = document.getElementById('background-video');
                 const reminderBox = document.getElementById('reminder-box');
                 
-                // Reset the video to the start and play it
-                video.currentTime = 0; // Reset video to the start
-                video.muted = false;   // Unmute the video on the first click
-                video.play();          // Play the video
+                video.currentTime = 0;
+                video.muted = false;
+                video.play();
                 
-                // Hide the reminder box
                 reminderBox.style.display = 'none';
-                
                 isAudioPlayed = true;
             }
         });
 
         loadConfig();
-
-        async function loadDiscordStatus() {
-            const userId = 'YOUR_DISCORD_USER_ID'; // Indsæt dit Discord User ID her
-            const response = await fetch(`/get-discord-status/${userId}`);
-            const data = await response.json();
-
-            document.getElementById('discord-status').textContent = data.status;
-
-            const activityElement = document.getElementById('discord-activity');
-            if (data.activities.length > 0) {
-                activityElement.textContent = `Currently doing: ${data.activities[0].name} - ${data.activities[0].details}`;
-            } else {
-                activityElement.textContent = 'No activity detected';
-            }
-        }
-
-        loadDiscordStatus();
-
     </script>
 </body>
 </html>
