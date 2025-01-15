@@ -1,6 +1,6 @@
 # README
 
-## T3DDYUHD Personlig Hjemmeside V1 
+## T3DDYUHD Personlig Hjemmeside V1  
 
 ### Beskrivelse
 Dette projekt er en dynamisk webapplikation, der fungerer som en brugerprofil. Den inkluderer:
