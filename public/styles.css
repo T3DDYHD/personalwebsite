@@ -1,0 +1,396 @@
+@font-face {
+    font-family: 'DOTMBold';
+    src: url('font/DOTMBold.TTF') format('truetype');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DOTMBold", sans-serif;
+    overflow: hidden;
+    background-color: #000;
+    zoom: 125%;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    transition: opacity 0.5s ease;
+    opacity: 100;
+    pointer-events: none;
+}
+
+.background.hidden {
+    opacity: 0;
+}
+
+#profile-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) perspective(1000px);
+    width: 80%;
+    max-width: 550px;
+    height: 300px;
+    border-radius: 20px;
+    background-color: rgba(167, 137, 217, 0.09);
+    border: 2px solid rgba(168, 137, 217, 0.55);
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-header {
+    width: 100%;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+}
+
+.profile-pic {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid rgba(168, 137, 217, 0.55);
+    overflow: hidden;
+    margin-top: -50px;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.status-indicator {
+    position: absolute;
+    right: 230px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 3px solid rgba(168, 137, 217, 0.55);
+    background-color: #000;
+    z-index: 10;
+    font-size: 20px;
+    bottom: 38%;
+}
+
+.status-online {
+    background-color: #23A55A;
+    /* Green circle */
+    font-size: 22px;
+    /* Ensure the icon fits inside */
+    bottom: 38%;
+}
+
+.status-idle {
+    color: #F0B232;
+    /* Yellow circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    /* Ensure the icon fits inside */
+    bottom: 38%;
+}
+
+.status-dnd {
+    color: #ed4245;
+    /* Red circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    font-size: 22px;
+    /* Ensure the icon fits inside */
+    bottom: 38%;
+}
+
+.status-offline {
+    background-color: #747f8d;
+    /* Gray circle */
+    bottom: 42%;
+}
+
+.username {
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(167, 137, 217);
+    text-shadow: rgb(167, 137, 217) 0px 0px 16.5px;
+    margin-top: 0px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    text-shadow: rgb(167, 137, 217) 0px 0px 16.5px;
+    font-size: 24px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.social-icons a:hover {
+    text-shadow: rgb(167, 137, 217) 0px 0px 16.5px;
+}
+
+.viewer-count {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    color: rgb(167, 137, 217);
+    text-shadow: rgb(167, 137, 217) 0px 0px 16.5px;
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.viewer-count i {
+    margin-right: 0px;
+    font-size: 12px;
+    color: rgb(167, 137, 217);
+    text-shadow: rgb(167, 137, 217) 0px 0px 16.5px;
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        width: 90%;
+        height: 300px;
+    }
+
+    .profile-pic {
+        width: 60px;
+        height: 60px;
+    }
+
+    .username {
+        font-size: 18px;
+    }
+
+    .viewer-count {
+        font-size: 16px;
+    }
+
+    .social-icons a {
+        font-size: 20px;
+    }
+
+    .status-indicator {
+        right: 240px;
+        /* Adjust position on smaller screens */
+        bottom: 50%;
+        width: 20px;
+        /* Smaller circle */
+        height: 20px;
+        /* Smaller circle */
+        font-size: 18px;
+        /* Adjust icon size */
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        width: 95%;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+    }
+
+    .username {
+        font-size: 16px;
+    }
+
+    .viewer-count {
+        font-size: 14px;
+    }
+
+    .social-icons a {
+        font-size: 18px;
+    }
+
+    .reminder-box {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    .status-indicator {
+        right: 150px;
+        /* Further adjust position for very small screens */
+        width: 18px;
+        /* Even smaller circle */
+        height: 18px;
+        /* Even smaller circle */
+        font-size: 16px;
+        /* Smaller icon size */
+    }
+}
+
+.overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(167, 137, 217, 0.09);
+    color: white;
+    font-family: 'DOTMBold', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.volume-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    align-items: center;
+    /* Justerer elementerne horisontalt */
+    transition: width 0.3s ease;
+    /* Tilføjer en smooth transition på containerens bredde */
+    border: 2px solid rgba(168, 137, 217, 0.55);
+    background-color: rgba(167, 137, 217, 0.09);
+    border-radius: 15px;
+    zoom: 135%;
+    display: none;
+}
+
+.volume-icon {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: rgb(167, 137, 217);
+    text-shadow: rgb(167, 137, 217) 0px 0px 16.5px;
+    font-size: 20px;
+    transition: background-color 0.2s;
+    height: 45px;
+    width: 45px;
+    zoom: 140%;
+}
+
+.currently-playing {
+    display: flex;
+    /* Use flexbox for horizontal alignment */
+    align-items: center;
+    /* Vertically align the items */
+    margin-top: 20px;
+    /* Add some space above the currently playing section */
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: auto;
+    max-width: 450px;
+    height: 70px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid rgba(168, 137, 217, 0.55);
+    background-color: rgba(167, 137, 217, 0.09);
+    color: rgb(167, 137, 217);
+    text-shadow: rgb(167, 137, 217) 0px 0px 16.5px;
+    display: none;
+    align-items: center;
+    font-size: 14px;
+    transition: opacity 0.3s ease;
+    zoom: 135%;
+}
+
+.currently-playing-info {
+    display: flex;
+    align-items: center;
+    /* Align items horizontally */
+}
+
+.album-cover {
+    width: 50px;
+    /* Set a fixed size for the album cover */
+    height: 50px;
+    object-fit: cover;
+    /* Ensure the image covers the space without distortion */
+    margin-right: 20px;
+    /* Add space between the image and text */
+    border-radius: 8px;
+    /* Optional: add rounded corners to the album cover */
+}
+
+.currently-playing-text h3,
+.currently-playing-text p {
+    margin: 0;
+    /* Remove default margins */
+    color: #fff;
+    /* Make the text white */
+}
+
+.currently-playing-text h3 {
+    font-size: 18px;
+    /* Font size for artist name */
+    font-weight: bold;
+}
+
+.currently-playing-text p {
+    font-size: 14px;
+    /* Font size for song title */
+    color: #bbb;
+    /* Slightly lighter color for song title */
+}
+
+.username-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center-align the username and "Last seen" */
+    margin-bottom: 10px;
+    /* Add space between username and status indicator */
+}
+
+.username {
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(167, 137, 217);
+    text-shadow: rgb(167, 137, 217) 0px 0px 16.5px;
+    margin-top: 0px;
+}
+
+.last-seen {
+    font-size: 14px;
+    color: rgb(167, 137, 217);
+    text-shadow: rgb(167, 137, 217) 0px 0px 16.5px;
+    margin-top: 5px;
+    /* Add slight spacing above "Last seen" */
+    text-align: center;
+}
